@@ -29,6 +29,9 @@ eval: lint tests
 start-js:
 	@npm start
 
+start-browser:
+	@open index.html
+
 lint-js:
 	@npm run lint;
 
