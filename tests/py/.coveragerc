@@ -1,0 +1,11 @@
+[run]
+omit = 
+
+[report]
+exclude_lines =
+    from
+    import
+skip_covered = True
+show_missing = True
+precision = 2
+fail_under = 96.00
