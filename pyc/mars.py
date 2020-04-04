@@ -1,8 +1,8 @@
 from pprint import pformat
 
-from const import chars
-from grid import Grid
-from rover import Rover
+from pyc.const import chars
+from pyc.grid import Grid
+from pyc.rover import Rover
 
 
 class Mars:
