@@ -4,15 +4,7 @@ export RT?=js
 export TEST?=./tests
 
 
-install:
-	@( \
-		if [ ! -d .venv ]; then python3 -m venv --copies .venv; fi; \
-		source .venv/bin/activate; \
-		pip install -qU pip; \
-		pip install -r requirements.txt; \
-		if [ ! -f package-lock.json ] ; then npm install; \
-		else npm -c install ; fi; \
-	)
+install: install-${RT}
 
 start: start-${RT}
 
@@ -26,6 +18,12 @@ eval: lint tests
 
 
 # Node commands
+install-js:
+	@( \
+		if [ ! -f package-lock.json ] ; then npm install; \
+		else npm -c install ; fi; \
+	)
+
 start-js:
 	@npm start
 
@@ -43,6 +41,14 @@ tests-js:
 
 
 # Python commands
+install-py:
+	@( \
+		if [ ! -d .venv ]; then python3 -m venv --copies .venv; fi; \
+		source .venv/bin/activate; \
+		pip install -qU pip; \
+		pip install -r requirements.txt; \
+	)
+
 start-py:
 	@python ./py/app.py
 
@@ -65,7 +71,7 @@ lint-fix-py:
 	)
 
 tests-py:
-	@python -m pytest --cov=src --color=yes \
+	@python -m pytest --cov=py --color=yes \
 		--cov-config=./tests/py/.coveragerc \
 		--cov-report term \
 		--cov-report html:coverage \
