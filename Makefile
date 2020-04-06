@@ -71,7 +71,7 @@ lint-fix-py:
 	)
 
 tests-py:
-	@python -m pytest --cov=py --color=yes \
+	@python -m pytest --cov=pyc --color=yes \
 		--cov-config=./tests/py/.coveragerc \
 		--cov-report term \
 		--cov-report html:coverage \

@@ -1,4 +1,4 @@
-from mars import Mars
+from pyc.mars import Mars
 
 
 def main():

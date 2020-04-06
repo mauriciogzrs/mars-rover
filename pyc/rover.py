@@ -1,10 +1,11 @@
-from const import chars
+from pyc.const import chars
+from pyc.grid import Grid
 
 
 class Rover:
-    def __init__(self, name, x=0, y=0, direction="N", mars=object()):
+    def __init__(self, name, x=0, y=0, direction="N", mars=None):
         self.compass = ["N", "E", "S", "W"]
-        self.mars = mars
+        self.mars = mars if mars else Grid()
         self.name = name
         self.direction = direction
         self.position = {"x": x, "y": y}

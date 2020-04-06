@@ -1,6 +1,6 @@
 from random import randrange, shuffle
 
-from const import chars
+from pyc.const import chars
 
 
 class Grid:
