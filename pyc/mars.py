@@ -9,8 +9,8 @@ class Mars:
     def __init__(self, rows=defaults["rows"], obstacles=defaults["obstacles"]):
         self.rows = rows
         self.obstacles = obstacles
-        self.mars = None
-        self.grid = None
+        self.mars = object
+        self.grid = [[]]
         self.rovers = []
         self._create()
 
@@ -27,7 +27,9 @@ class Mars:
 
         print(f"• Total obstacles: {count} \n")
 
-    def add_rover(self, name, x=0, y=0, direction="N"):
+    def add_rover(
+        self, name, x=defaults["x"], y=defaults["y"], direction=defaults["direction"]
+    ):
         name = name.capitalize()
         direction = direction.upper()
 
