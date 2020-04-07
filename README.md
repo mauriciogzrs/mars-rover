@@ -14,6 +14,15 @@ Make sure you have installed:
 - [Python 3.7+](https://www.python.org/downloads/)
 - [Node 10+](https://nodejs.org/en/download/)
 
+### :information_source: Important
+
+Even though I started the project based on Python, I "defaulted" all the following commands to work with Node.
+
+To run with Python, after any `make` command, add the *RUNTIME* variable `RT`:
+```sh
+make [command] RT=py
+```
+
 ## Installation
 
 Setup your workspace:
@@ -21,15 +30,6 @@ Setup your workspace:
 git clone https://github.com/mauriciogzrs/mars-rover.git
 cd mars-rover
 make install
-```
-
-### :information_source: Important
-
-Even though I started the project based on Python, I "defaulted" all the following commands to work with Node.
-
-To run with Python, after any command, add the *RUNTIME* variable `RT`:
-```sh
-[command] RT=py
 ```
 
 ## Run app
