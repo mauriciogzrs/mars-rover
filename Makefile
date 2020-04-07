@@ -16,6 +16,8 @@ tests: tests-${RT}
 
 eval: lint tests
 
+build: build-${RT}
+
 
 # Node commands
 install-js:
@@ -27,7 +29,7 @@ install-js:
 start-js:
 	@npm start
 
-start-browser:
+start-browser: build-js
 	@open index.html
 
 lint-js:
@@ -38,6 +40,9 @@ lint-fix-js:
 
 tests-js:
 	@npm test;
+
+build-js:
+	@npm run build;
 
 
 # Python commands
