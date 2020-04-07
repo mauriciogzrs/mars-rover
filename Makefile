@@ -50,7 +50,7 @@ install-py:
 	)
 
 start-py:
-	@python ./py/app.py
+	@python ./app.py
 
 black:
 	@black . --exclude '.venv|build|target|dist' --check;
