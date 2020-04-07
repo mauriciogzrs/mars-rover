@@ -1,12 +1,12 @@
 from pprint import pformat
 
-from pyc.const import chars
+from pyc.const import chars, defaults
 from pyc.grid import Grid
 from pyc.rover import Rover
 
 
 class Mars:
-    def __init__(self, rows=10, obstacles=5):
+    def __init__(self, rows=defaults["rows"], obstacles=defaults["obstacles"]):
         self.rows = rows
         self.obstacles = obstacles
         self.mars = None
@@ -23,7 +23,7 @@ class Mars:
         count = 0
 
         for x in range(len(self.grid)):
-            count += self.grid[x].count("O")
+            count += self.grid[x].count(chars["obstacle"])
 
         print(f"• Total obstacles: {count} \n")
 

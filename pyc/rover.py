@@ -1,9 +1,16 @@
-from pyc.const import chars
+from pyc.const import chars, defaults
 from pyc.grid import Grid
 
 
 class Rover:
-    def __init__(self, name, x=0, y=0, direction="N", mars=None):
+    def __init__(
+        self,
+        name,
+        x=defaults["x"],
+        y=defaults["y"],
+        direction=defaults["direction"],
+        mars=None,
+    ):
         self.compass = ["N", "E", "S", "W"]
         self.mars = mars if mars else Grid()
         self.name = name
@@ -32,20 +39,7 @@ class Rover:
         return self._logger()
 
     def _output(self, kind, direction, moves):
-        icons = {
-            "turn": {
-                "forth_arrow": "↻",
-                "back_arrow": "↺",
-                "forth_instruction": "right",
-                "back_instruction": "left",
-            },
-            "move": {
-                "forth_arrow": "↑",
-                "back_arrow": "↓",
-                "forth_instruction": "forwards",
-                "back_instruction": "backwards",
-            },
-        }
+        icons = defaults["icons"].copy()
 
         forth_arrow = icons[kind]["forth_arrow"]
         back_arrow = icons[kind]["back_arrow"]

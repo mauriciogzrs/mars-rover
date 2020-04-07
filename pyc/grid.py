@@ -1,10 +1,10 @@
 from random import randrange, shuffle
 
-from pyc.const import chars
+from pyc.const import chars, defaults
 
 
 class Grid:
-    def __init__(self, rows=10, obstacles=5):
+    def __init__(self, rows=defaults["rows"], obstacles=defaults["obstacles"]):
         self.grid = []
         self.rows = rows
         self.obstacles = obstacles
