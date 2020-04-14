@@ -46,6 +46,6 @@ module.exports = class Mars {
   }
 
   printGrid() {
-    console.log(this.grid, '\n');
+    console.log(this.grid);
   }
 };

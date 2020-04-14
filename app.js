@@ -1,4 +1,4 @@
-const Mars = require('./mars');
+const Mars = require('./js/src/mars');
 
 m = new Mars;
 r1 = m.addRover('spirit');
