@@ -65,14 +65,14 @@ You can check the code's validations:
 - `autoflake`: check unused imports and variables
 - `isort`: dependency import order
 
-To check both lint and testing, run:
-```sh
-make eval
-```
-
 Some of the lint errors can be fixed automatically through:
 ```sh
 make lint-fix
+```
+
+To check both lint and testing, run:
+```sh
+make validate
 ```
 
 ### Maintainers
