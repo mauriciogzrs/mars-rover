@@ -14,7 +14,7 @@ lint-fix: lint-fix-${RT}
 
 tests: tests-${RT}
 
-eval: lint tests
+validate: lint tests
 
 
 # Node commands
@@ -25,10 +25,10 @@ install-js:
 	)
 
 start-js:
-	@npm start
+	@npm start;
 
 start-browser:
-	@open index.html
+	@open index.html;
 
 lint-js:
 	@npm run lint;
@@ -50,7 +50,7 @@ install-py:
 	)
 
 start-py:
-	@python ./app.py
+	@python ./app.py;
 
 black:
 	@black . --exclude '.venv|build|target|dist' --check;
@@ -64,11 +64,9 @@ autoflake:
 lint-py: autoflake isort black
 
 lint-fix-py:
-	@( \
-		autoflake --recursive --exclude .venv --in-place --remove-all-unused-imports ./ ; \
-		isort --recursive --apply; \
-		black . --exclude '.venv|build|target|dist'; \
-	)
+	@autoflake --recursive --exclude .venv --in-place --remove-all-unused-imports ./ ;
+	@isort --recursive --apply;
+	@black . --exclude '.venv|build|target|dist';
 
 tests-py:
 	@python -m pytest --cov=pyc --color=yes \
