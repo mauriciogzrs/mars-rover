@@ -1,0 +1,65 @@
+name: Python Continuous Integration
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - ~/pyc/
+      - ~/tests/py/
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Cache python libraries
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.venv/
+            ~/.cache/pip
+          key: ${{ github.head_ref }}-${{ hashFiles('**/requirements.txt') }}
+      - name: Install Dependencies
+        run: make install RT=py
+      - name: Upload virtual environment
+        uses: actions/upload-artifact@v2
+        with:
+          name: venv
+          path: .venv/
+          retention-days: 1
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: [install]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Download virtual environment
+        uses: actions/download-artifact@v2
+        with:
+          name: venv
+      - name: Checking python linting
+        run: make lint RT=py
+
+  tests:
+    runs-on: ubuntu-latest
+    needs: [install]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Download virtual environment
+        uses: actions/download-artifact@v2
+        with:
+          name: venv
+      - name: Running python tests
+        run: make tests RT=py
