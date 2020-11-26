@@ -1,4 +1,4 @@
-from pyc.const import chars, defaults
+from pyc.const import chars, defaults, icons
 from pyc.grid import Grid
 
 
@@ -11,7 +11,7 @@ class Rover:
         direction=defaults["direction"],
         mars=None,
     ):
-        self.compass = ["N", "E", "S", "W"]
+        self.compass = defaults["compass"]
         self.mars = mars if mars else Grid()
         self.name = name
         self.direction = direction
@@ -39,8 +39,6 @@ class Rover:
         return self._logger()
 
     def _output(self, kind, direction, moves):
-        icons = defaults["icons"].copy()
-
         forth_arrow = icons[kind]["forth_arrow"]
         back_arrow = icons[kind]["back_arrow"]
         forth_instruction = icons[kind]["forth_instruction"]
@@ -140,7 +138,7 @@ class Rover:
         return self._move(0, moves)
 
     def command(self, commands):
-        valid = ["r", "l", "f", "b"]
+        valid = defaults["valid_commands"]
 
         for command in commands:
             if command in valid:

@@ -9,7 +9,7 @@ class Mars:
     def __init__(self, rows=defaults["rows"], obstacles=defaults["obstacles"]):
         self.rows = rows
         self.obstacles = obstacles
-        self.mars = object
+        self.mars = {}
         self.grid = [[]]
         self.rovers = []
         self._create()
