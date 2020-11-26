@@ -1,0 +1,65 @@
+name: Node Continuous Integration
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - ~/js/node/
+      - ~/tests/js/
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/node_modules/
+            ~/.npm
+          key: ${{ github.head_ref }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Install Modules
+        run: make install
+      - name: Upload node modules
+        uses: actions/upload-artifact@v2
+        with:
+          name: node_modules
+          path: ~/node_modules/
+          retention-days: 1
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: [install]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Download node modules
+        uses: actions/download-artifact@v2
+        with:
+          name: node_modules
+      - name: Checking JS linting
+        run: npx eslint ./js/node  # This should be changed once JS is unified
+
+  tests:
+    runs-on: ubuntu-latest
+    needs: [install]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Download node modules
+        uses: actions/download-artifact@v2
+        with:
+          name: node_modules
+      - name: Running JS tests
+        run: make tests
