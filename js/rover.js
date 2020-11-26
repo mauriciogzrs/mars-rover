@@ -1,8 +1,12 @@
 class Rover {
   constructor(
-      name, x = 0, y = 0, direction = 'N', mars = {'grid': [[], []]},
+      name,
+      x = defaults.x,
+      y = defaults.y,
+      direction = defaults.direction,
+      mars = {'grid': [[], []]},
   ) {
-    this.compass = ['N', 'E', 'S', 'W'];
+    this.compass = defaults.compass;
     this.direction = direction;
     this.mars = mars;
     this.name = name;
@@ -32,21 +36,6 @@ class Rover {
   }
 
   output(type, direction, moves) {
-    const icons = {
-      'turn': {
-        'forthArrow': '↻',
-        'backArrow': '↺',
-        'forthInstruction': 'right',
-        'backInstruction': 'left',
-      },
-      'move': {
-        'forthArrow': '↑',
-        'backArrow': '↓',
-        'forthInstruction': 'forwards',
-        'backInstruction': 'backwards',
-      },
-    };
-
     const forthArrow = icons[type].forthArrow;
     const backArrow = icons[type].backArrow;
     const forthInstruction = icons[type].forthInstruction;

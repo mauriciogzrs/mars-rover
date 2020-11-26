@@ -1,7 +1,7 @@
-const {obsChar} = require('./const');
+const {obsChar, defaults} = require('./const');
 
 module.exports = class Grid {
-  constructor(rows = 10, obstacles = 5) {
+  constructor(rows = defaults.rows, obstacles = defaults.obstacles) {
     this.grid = [];
     this.rows = rows;
     this.obstacles = obstacles;

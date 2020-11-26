@@ -1,12 +1,17 @@
-const {obsChar, roverChar} = require('./const');
+const {obsChar, roverChar, defaults, icons} = require('./const');
+const {Grid} = require('./grid');
 
 module.exports = class Rover {
   constructor(
-      name, x = 0, y = 0, direction = 'N', mars = {'grid': [[], []]},
+      name,
+      x = defaults.x,
+      y = defaults.y,
+      direction = defaults.direction,
+      mars = null,
   ) {
-    this.compass = ['N', 'E', 'S', 'W'];
+    this.compass = defaults.compass;
     this.direction = direction;
-    this.mars = mars;
+    this.mars = mars ? mars : new Grid();
     this.name = name;
     this.position = {'x': x, 'y': y};
     this.travelLog = [];
@@ -34,21 +39,6 @@ module.exports = class Rover {
   }
 
   output(type, direction, moves) {
-    const icons = {
-      'turn': {
-        'forthArrow': '↻',
-        'backArrow': '↺',
-        'forthInstruction': 'right',
-        'backInstruction': 'left',
-      },
-      'move': {
-        'forthArrow': '↑',
-        'backArrow': '↓',
-        'forthInstruction': 'forwards',
-        'backInstruction': 'backwards',
-      },
-    };
-
     const forthArrow = icons[type].forthArrow;
     const backArrow = icons[type].backArrow;
     const forthInstruction = icons[type].forthInstruction;
@@ -166,7 +156,7 @@ module.exports = class Rover {
   };
 
   command(commands) {
-    const valid = ['r', 'l', 'f', 'b'];
+    const valid = defaults.validCommands;
 
     for (const command of commands) {
       if (valid.includes(command)) {

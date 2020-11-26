@@ -1,4 +1,4 @@
-from pyc.const import chars, defaults
+from pyc.const import chars, defaults, icons
 from pyc.rover import Rover
 
 
@@ -11,8 +11,8 @@ def test_create_rover():
 
 
 def test_turn_right(capsys):
-    icon = defaults["icons"]["turn"]["forth_arrow"]
-    instruction = defaults["icons"]["turn"]["forth_instruction"]
+    icon = icons["turn"]["forth_arrow"]
+    instruction = icons["turn"]["forth_instruction"]
 
     rover = Rover("test", direction="N")
 
@@ -25,8 +25,8 @@ def test_turn_right(capsys):
 
 
 def test_turn_left(capsys):
-    icon = defaults["icons"]["turn"]["back_arrow"]
-    instruction = defaults["icons"]["turn"]["back_instruction"]
+    icon = icons["turn"]["back_arrow"]
+    instruction = icons["turn"]["back_instruction"]
 
     rover = Rover("test", direction="N")
 
@@ -39,8 +39,8 @@ def test_turn_left(capsys):
 
 
 def test_move_forwards(capsys):
-    icon = defaults["icons"]["move"]["forth_arrow"]
-    instruction = defaults["icons"]["move"]["forth_instruction"]
+    icon = icons["move"]["forth_arrow"]
+    instruction = icons["move"]["forth_instruction"]
 
     rover = Rover("test", x=0, y=0, direction="S")
     rover.mars.grid[1][0] = ""
@@ -55,8 +55,8 @@ def test_move_forwards(capsys):
 
 
 def test_move_backwards(capsys):
-    icon = defaults["icons"]["move"]["back_arrow"]
-    instruction = defaults["icons"]["move"]["back_instruction"]
+    icon = icons["move"]["back_arrow"]
+    instruction = icons["move"]["back_instruction"]
 
     rover = Rover("test", x=0, y=0, direction="N")
     rover.mars.grid[1][0] = ""

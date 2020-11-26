@@ -1,9 +1,9 @@
 const Rover = require('./rover');
 const Grid = require('./grid');
-const {obsChar, roverChar} = require('./const');
+const {obsChar, roverChar, defaults} = require('./const');
 
 module.exports = class Mars {
-  constructor(rows = 10, obstacles = 5) {
+  constructor(rows = defaults.rows, obstacles = defaults.obstacles) {
     this.rows = rows;
     this.obstacles = obstacles;
     this.mars = null;
@@ -27,7 +27,9 @@ module.exports = class Mars {
     console.log(`• Total obstacles: ${count} \n`);
   }
 
-  addRover(name, x= 0, y = 0, direction = 'N') {
+  addRover(
+      name, x = defaults.x, y = defaults.y, direction = defaults.direction,
+  ) {
     name = name.charAt(0).toUpperCase() + name.slice(1);
     direction = direction.toUpperCase();
 
