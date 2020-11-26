@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: venv
-          path: .venv/
+          path: ~/.venv/
           retention-days: 1
 
   lint:
