@@ -69,7 +69,17 @@ lint-fix-py:
 	@black . --exclude '.venv|build|target|dist';
 
 tests-py:
-	@python -m pytest --cov=pyc --color=yes \
+	@if [ $$CI ]; then make tests-py-ci; else make tests-py-local; fi;
+
+tests-py-local:
+	@python -m pytest --showlocals --color=yes \
+		--cov=pyc \
+		--cov-config=./tests/py/.coveragerc \
+		--rootdir=. $${TEST};
+
+tests-py-ci:
+	@python -m pytest --showlocals --color=yes \
+		--cov=pyc \
 		--cov-config=./tests/py/.coveragerc \
 		--cov-report term \
 		--cov-report html:coverage \
