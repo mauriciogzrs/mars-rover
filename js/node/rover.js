@@ -1,5 +1,5 @@
+const Grid = require('./grid');
 const {obsChar, roverChar, defaults, icons} = require('./const');
-const {Grid} = require('./grid');
 
 module.exports = class Rover {
   constructor(

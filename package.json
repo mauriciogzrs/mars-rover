@@ -1,24 +1,25 @@
 {
-    "name": "mars-rover",
-    "version": "1.0.0",
-    "author": {
-        "name": "Mauricio Gonzalez Robles",
-        "email": "mauricio.gzrs@gmail.com"
-    },
-    "description": "Mars rover prework lab",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/mauriciogzrs/mars-rover.git"
-    },
-    "scripts": {
-        "start": "node js/node/app.js",
-        "lint": "eslint ./js",
-        "lint-fix": "eslint ./js --fix",
-        "test": "mocha --recursive ./tests/"
-    },
-    "devDependencies": {
-        "eslint": "^6.8.0",
-        "eslint-config-google": "^0.14.0",
-        "mocha": "^7.1.1"
-    }
+  "name": "mars-rover",
+  "version": "1.0.0",
+  "author": {
+    "name": "Mauricio Gonzalez Robles",
+    "email": "mauricio.gzrs@gmail.com"
+  },
+  "description": "Mars rover Ironhack prework lab",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mauriciogzrs/mars-rover.git"
+  },
+  "scripts": {
+    "start": "node js/node/app.js",
+    "lint": "eslint ./js ./tests/js",
+    "lint-fix": "eslint ./js ./tests/js --fix",
+    "test": "mocha --config ./tests/js/.mocharc.json"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0",
+    "mocha": "^7.1.1",
+    "test-console": "^1.1.0"
+  }
 }

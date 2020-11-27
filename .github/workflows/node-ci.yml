@@ -46,7 +46,7 @@ jobs:
         with:
           name: node_modules
       - name: Checking JS linting
-        run: npx eslint ./js/node  # This should be changed once JS is unified
+        run: npx eslint ./js/node ./tests/js  # This should be changed once JS is unified
 
   tests:
     runs-on: ubuntu-latest
