@@ -1,13 +1,30 @@
 name: Node Continuous Integration
 
 on:
+  push:
+    paths:
+      - .github/workflows/**/*
+      - ./Makefile
+      - ./.gitignore
+      - ./js/**/*
+      - ./tests/js/**/*
+      - ./index.html
+      - ./.eslintrc.json
+      - ./package*.json
   pull_request:
     branches: [master]
-    paths:
-      - ~/js/node/
-      - ~/tests/js/
 
 jobs:
+  app:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - name: Setup Node 12
+          uses: actions/setup-node@v1
+          with:
+            node-version: '12.x'
+        - run: make start
+
   install:
     runs-on: ubuntu-latest
     steps:
@@ -20,17 +37,14 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            ~/node_modules/
-            ~/.npm
-          key: ${{ github.head_ref }}-${{ hashFiles('**/package-lock.json') }}
+            ~/.npm/
+            ./node_modules/
+          key: ${{ github.ref }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ github.ref }}-node-
+            ${{ github.ref }}-
       - name: Install Modules
         run: make install
-      - name: Upload node modules
-        uses: actions/upload-artifact@v2
-        with:
-          name: node_modules
-          path: ~/node_modules/
-          retention-days: 1
 
   lint:
     runs-on: ubuntu-latest
@@ -41,10 +55,18 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - name: Download node modules
-        uses: actions/download-artifact@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
         with:
-          name: node_modules
+          path: |
+            ~/.npm/
+            ./node_modules/
+          key: ${{ github.ref }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ github.ref }}-node-
+            ${{ github.ref }}-
+      - name: Getting node_modules from cache
+        run: make install
       - name: Checking JS linting
         run: npx eslint ./js/node ./tests/js  # This should be changed once JS is unified
 
@@ -57,9 +79,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - name: Download node modules
-        uses: actions/download-artifact@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
         with:
-          name: node_modules
+          path: |
+            ~/.npm/
+            ./node_modules/
+          key: ${{ github.ref }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ github.ref }}-node-
+            ${{ github.ref }}-
+      - name: Getting node_modules from cache
+        run: make install
       - name: Running JS tests
         run: make tests
