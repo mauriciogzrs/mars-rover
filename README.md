@@ -46,8 +46,6 @@ make start RT=browser
 
 ## Testing
 
-> :construction: Unit tests are still needed so, for now this command will output an error because none are found. More will be added in the future.
-
 To run the tests, execute:
 ```sh
 make tests
