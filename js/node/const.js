@@ -12,16 +12,16 @@ module.exports = {
   },
   'icons': {
     'turn': {
-      'forth_arrow': '↻',
-      'back_arrow': '↺',
-      'forth_instruction': 'right',
-      'back_instruction': 'left',
+      'forthArrow': '↻',
+      'backArrow': '↺',
+      'forthInstruction': 'right',
+      'backInstruction': 'left',
     },
     'move': {
-      'forth_arrow': '↑',
-      'back_arrow': '↓',
-      'forth_instruction': 'forwards',
-      'back_instruction': 'backwards',
+      'forthArrow': '↑',
+      'backArrow': '↓',
+      'forthInstruction': 'forwards',
+      'backInstruction': 'backwards',
     },
   },
 };

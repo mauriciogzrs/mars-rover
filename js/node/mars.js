@@ -34,7 +34,7 @@ module.exports = class Mars {
     direction = direction.toUpperCase();
 
     if (this.grid[y][x]) {
-      new Error(`Error: Can't place ${name} at ${x}, ${y}`);
+      throw new Error(`Error: Can't place ${name} at ${x}, ${y}`);
     }
 
     console.log(`${name} is landing on Mars!`);

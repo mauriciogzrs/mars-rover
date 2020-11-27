@@ -1,0 +1,7 @@
+{
+  "recursive": true,
+  "spec": "tests/js/**/*.test.js",
+  "bail": true,
+  "fullTrace": true,
+  "inlineDiffs": true
+}

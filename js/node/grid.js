@@ -5,7 +5,7 @@ module.exports = class Grid {
     this.grid = [];
     this.rows = rows;
     this.obstacles = obstacles;
-    this.max_obstacles = parseInt(this.rows ** 2 / 2);
+    this.maxObstacles = parseInt(this.rows ** 2 / 2);
     this.create();
   }
 
@@ -26,13 +26,13 @@ module.exports = class Grid {
   }
 
   createObstacles() {
-    if (this.obstacles > this.max_obstacles) {
+    if (this.obstacles > this.maxObstacles) {
       console.log(
           'Too many obstacles:', this.obstacles,
-          `[max ${this.max_obstacles}]`,
+          `[max ${this.maxObstacles}]`,
       );
 
-      this.obstacles = this.max_obstacles;
+      this.obstacles = this.maxObstacles;
     }
 
     for (let i = 0; i < this.obstacles; i++) {
